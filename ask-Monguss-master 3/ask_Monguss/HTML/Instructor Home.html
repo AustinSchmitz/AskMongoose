@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Instructor Home</title>
+		<link rel="stylesheet" type="text/css" href="/CSS/layout.css">
+		<link rel="stylesheet" type="text/css" href="/CSS/main.css">
+	</head>
+
+	<body>
+		<div>
+            <ul>
+                <li class="username">{{username}}</a></li>
+                <li><a href="/instructor">Home</a></li>
+                <li><a href="/instructor/view_all">Questions</a></li>
+                <li><a href="/instructor/faq">FAQ</a></li>
+                <li><a href="/change_password">Change Password</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+
+		<div id="content">
+			<div id="inst_home">
+				<div id="greeting">
+					<h2>Greetings, Professor {{username}}!</h2>
+				</div>
+				<br>
+
+				<div id="stats">
+					<table>
+						<thead>
+							<tr>
+								<th>Questions</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Total</td>
+								<td align="center">{{totalQuestions}}</td>
+							</tr>
+							<tr>
+								<td>Unanswered</td>
+								<td align="center">{{unansweredQuestions}}</td>
+							</tr>
+							<tr>
+								<td>Answered</td>
+								<td align="center">{{answeredQuestions}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>					

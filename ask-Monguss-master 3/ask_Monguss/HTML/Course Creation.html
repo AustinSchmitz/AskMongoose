@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a New Course</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+</head>
+<body>
+    <div>
+        <ul>
+            <li class="username">{{username}}</a></li>
+            <li><a href="/ADMIN">Home</a></li>
+            <li><a href="/ADMIN/create_user">Create New Users</a></li>
+            <li><a href="/ADMIN/create_course">Create New Courses</a></li>
+            <li><a href="/ADMIN/test">View Test Cases</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul>
+    </div>
+
+
+    <div id="content">
+        <h1>Create a New Course or Add Users to an Existing Course</h1>
+
+        {% if empty_checkboxes == 1 %}
+         <p style="color:red" align="center"><b>At least 1 Student and 1 Instructor must be selected</b></p>
+        {% endif %}
+
+
+        <form action="/ADMIN/create_course" method="post">
+            <table border="0">
+                <tr>
+                    <td>Course ID</td>
+                    <td> <input type="text" name="courseID" placeholder="CS101" maxlength="6" required="true"></td>
+                </tr>
+            </table>
+
+            <br>
+
+            <table>
+                <tr>
+                    <th>Instructors</th>
+                    <th>Students</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        {% for i in all_instructors %}
+                        <input type="checkbox" name="instructors" value="{{i.ePantherID}}">{{i.ePantherID}}<br>
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for s in all_students %}
+                        <input type="checkbox" name="students" value="{{s.ePantherID}}">{{s.ePantherID}}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+            </table>
+
+            <br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE <html>
+<head>
+	<title>
+		Student View Answers
+	</title>
+
+	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
+
+	<style>
+		td{
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+	<div>
+		<ul>
+			<li class="username">{{username}}</a></li>
+			<li><a href="/student">Home</a></li>
+			<li><a href="/student/view_all">My Questions</a></li>
+			<li><a href="/student/ask">Submit a Question</a></li>
+			<li><a href="/student/faq">FAQ</a></li>
+			<li><a href="/change_password">Change Password</a></li>
+			<li><a href="/logout">Log Out</a></li>
+		</ul>
+	</div>
+	<div id="content">
+	<h1>Answers to your submitted questions</h1>
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Course #</th>
+					<th>Question</th>
+					<th>Answer</th>
+					<th>Instructor</th>
+					<th>Date Submitted</th>
+					<th>Date Answered</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for q in questions %}
+				<tr>
+					<td>
+						{{q.get().course.get().name}}
+					</td>
+
+					<td>
+						{{q.get().body}}
+					</td>
+
+					<td>
+						{% if q.get().answer == "" %}
+						(Not yet answered)
+						{% endif %}
+
+						{% if q.get().answer != "" %}
+						{{q.get().answer}}
+						{% endif %}
+					</td>
+
+					<td>
+						{{q.get().instructor.get().ePantherID}}
+					</td>
+
+					<td>
+						{{q.get().date_submitted.strftime('%m-%d-%Y')}}
+					</td>
+
+					<td>
+						{% if q.get().answer == "" %}
+						N/A
+						{% endif %}
+
+						{% if q.get().answer != "" %}
+						{{q.get().date_answered.strftime('%m-%d-%Y')}}
+						{% endif %}
+					</td>
+
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

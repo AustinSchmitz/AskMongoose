@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+ </head>
+<body>
+    <div>
+        <ul>
+            <li class="username">{{username}}</a></li>
+            <li><a href="/ADMIN">Home</a></li>
+            <li><a href="/ADMIN/create_user">Create New Users</a></li>
+            <li><a href="/ADMIN/create_course">Create New Courses</a></li>
+            <li><a href="/ADMIN/test">View Test Cases</a></li>
+            <li><a href="/logout">Log Out</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <center>
+            <h1>Welcome Administrator</h1>
+            <h2>Status: Currently Online</h2>
+
+            <hr>
+
+            <h3 align="center">Vital Statistics</h3>
+            <table>
+                <th>
+                    Description
+                </th>
+
+                <th>
+                    Value
+                </th>
+
+                <tr>
+                    <td>
+                        Number of Students
+                    </td>
+                    <td>
+                        {{numberOfStudents}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Number of Instructors
+                    </td>
+                    <td>
+                        {{numberOfInstructors}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Number of Courses
+                    </td>
+                    <td>
+                        {{numberOfCourses}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Number of Students per Instructor
+                    </td>
+                    <td>
+                        {{studentInstructorRatio}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Total Questions Submitted
+                    </td>
+
+                    <td>
+                        {{totalQuestions}}
+                    </td>
+                </tr>
+
+                <tr>
+                   <td>
+                       Total Questions Answered
+                   </td>
+
+                   <td>
+                       {{answeredQuestions}}
+                   </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Total Questions Unanswered
+                    </td>
+
+                    <td>
+                        {{unansweredQuestions}}
+                    </td>
+                </tr>
+
+            </table>
+        </center>
+    </div>
+</body>
+</html>

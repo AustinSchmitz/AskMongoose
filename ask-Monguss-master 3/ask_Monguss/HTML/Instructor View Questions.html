@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <title>View Course Questions</title>
+  <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+</head>
+<body>
+
+	<div>
+		<ul>
+			<li class="username">{{username}}</a></li>
+			<li><a href="/instructor">Home</a></li>
+			<li><a href="/instructor/view_all">Questions</a></li>
+			<li><a href="/instructor/faq">FAQ</a></li>
+			<li><a href="/change_password">Change Password</a></li>
+			<li><a href="/logout">Log Out</a></li>
+		</ul>
+	</div>
+
+	<div id="content">
+		<h1>View your course's questions</h1>
+
+		<form action="/instructor/view_all" method="get">
+			Pick a Course
+			<select name="courseName">
+				{% for c in courses %}
+					<option value="{{c.get().name}}">{{c.get().name}}</option>
+				{% endfor %}
+			</select>
+			<input type="submit" value="Update">
+		</form>
+
+		{% if isChosen == 1 %}
+		<table>
+			<thead>
+				<tr>
+                    <td colspan="7" align="center">
+                        <h4>{{courseName}}</h4>
+                    </td>
+                </tr>
+				<tr>
+					<th>Topic</th>
+					<th>Question</th>
+					<th>Answer</th>
+					<th>Submitted by</th>
+					<th>Date Submitted</th>
+					<th>Date Answered</th>
+					<th>Answer Question</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for q in questionsForInstructor %}
+					<tr>
+						<td>{{q.topic}}</td>
+						<td>{{q.body}}</td>
+
+						{% if q.answer != "" %}
+						<td>{{q.answer}}</td>
+						{% elif q.answer == ""%}
+						<td>Not Yet Answered</td>
+						{% endif %}
+
+						<td>{{q.student.get().ePantherID}}</td>
+						<td>{{q.date_submitted.strftime('%m-%d-%Y')}}</td>
+
+						{% if q.answer == "" %}
+						<td>Not Yet Answered</td>
+						{% endif %}
+
+						{% if q.answer != "" %}
+						<td>{{q.date_answered.strftime('%m-%d-%Y')}}</td>
+						{% endif %}
+
+						<td>
+						{% if q.answer == "" %}
+						<center>
+							<form action="/instructor/answer" method="get">
+								<input name="question_key" type="text" value="{{q.key.urlsafe()}}" hidden>
+								<input type="submit" value="Answer">
+							</form>
+						</center>
+						{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br />
+		{% endif %}
+
+	</div>
+</body>
+</html>

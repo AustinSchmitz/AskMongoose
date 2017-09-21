@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Results</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+ </head>
+<body>
+    <div>
+		<ul>
+			<li class="username">{{username}}</a></li>
+			<li><a href="/ADMIN">Home</a></li>
+			<li><a href="/ADMIN/create_user">Create New Users</a></li>
+			<li><a href="/ADMIN/create_course">Create New Courses</a></li>
+			<li><a href="/ADMIN/test">View Test Cases</a></li>
+			<li><a href="/logout">Log Out</a></li>
+		</ul>
+	</div>
+
+    <div id="content">
+        <center>
+            <h1>ask_Mong&uuml;ss Test Cases</h1>
+			{% if numberOfErrors == numberOfFailures == numberSkipped == 0%}
+			<h2>Status: <span style="color:green;">Pass</span></h2>
+			{% else %}
+			<h2>Status: <span style="color:red;">Fail</span></h2>
+			{% endif %}
+
+
+            <hr>
+
+            <table>
+				<tr>
+					<th colspan="4">Test Results</th>
+				</tr>
+                <tr>
+                     <th>
+                    Tests Run
+                </th>
+
+                <th>
+                    Errors
+                </th>
+
+				<th>
+                    Failures
+                </th>
+
+                <th>
+                    Skipped
+                </th>
+                </tr>
+
+
+                <tr>
+                    <td align="center">
+                        {{output.testsRun}}
+                    </td>
+					<td align="center">
+                        {{numberOfErrors}}
+                    </td>
+					<td align="center">
+                        {{numberOfFailures}}
+                    </td>
+					<td align="center">
+                        {{numberSkipped}}
+                    </td>
+                </tr>
+
+            </table>
+
+			<p/>
+
+			<table>
+				<tr>
+					<th>
+						Tests Run
+					</th>
+				</tr>
+				{% for testCase in suite %}
+				<tr>
+					<td>
+						{{testCase}}
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<p/>
+
+			<table>
+				<tr>
+					<th colspan="2">
+						Errors
+					</th>
+				</tr>
+				{% for x in errors %}
+				<tr>
+					<td>
+						{{x[0]}}
+					</td>
+					<td>
+						{{x}}
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<p/>
+
+			<table>
+				<tr>
+					<th colspan="2">
+						Failures
+					</th>
+				</tr>
+				{% for x in failures %}
+				<tr>
+					<td>
+						{{x[0]}}
+					</td>
+					<td>
+						{{x}}
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<p/>
+
+			<table>
+				<tr>
+					<th>
+						Skipped
+					</th>
+				</tr>
+				{% for x in skipped %}
+				<tr>
+					<td>
+						{{ids[loop.index]}}
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+        </center>
+    </div>
+</body>
+</html>

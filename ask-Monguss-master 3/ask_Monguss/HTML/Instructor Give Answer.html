@@ -1,0 +1,73 @@
+<!DOCTYPE <html>
+<head>
+	<title>Answer Student Question</title>
+	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
+</head>
+<body>
+	<div>
+		<ul>
+        	<li class="username">{{username}}</a></li>
+            <li><a href="/instructor">Home</a></li>
+            <li><a href="/instructor/view_all">Questions</a></li>
+            <li><a href="/instructor/faq">FAQ</a></li>
+            <li><a href="/change_password">Change Password</a></li>
+            <li><a href="/logout">Log Out</a></li>
+		</ul>
+	</div>
+
+	<div id="content">
+		<h1>Answer Student Questions</h1>
+		<form method="POST" action='/instructor/answer'>
+			<table>
+				<tr>
+					<td>
+						Submitted By
+					</td>
+					<td>
+						{{question.student.get().ePantherID}}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Date Submitted
+					</td>
+
+					<td>
+						{{question.date_submitted.strftime('%m-%d-%Y')}}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Topic
+					</td>
+					<td>
+						{{question.topic}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Question
+					</td>
+					<td>
+						{{question.body}}
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Answer
+					</td>
+					<td>
+						<textarea required name="answer" rows="10" cols="50" placeholder="Answer question"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input type="text" value="{{question.key.urlsafe()}}" name="question_key" hidden>
+			<input type='submit' value='Submit'/>
+		</form>
+	</div>
+
+</body>
+</html>
